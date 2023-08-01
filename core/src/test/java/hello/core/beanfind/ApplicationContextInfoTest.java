@@ -27,7 +27,10 @@ public class ApplicationContextInfoTest {
         for (String beanDefinitionName : beanDefinitionNames) {
             BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName); // bean에 대한 정보
 
-            if(beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
+            // ROLE_INFRASTRUCTURE: 스프링이 내부에서 사용하는 빈.
+            if(beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) { // 어플리케이션을 개발하기 위해 직접 등록한 빈.
+                Object bean = ac.getBean(beanDefinitionName);
+                System.out.println("name = " + beanDefinitionName + "object = "+bean);
             }
         }
     }
