@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationContextExtendsFindTest {
 
-    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(...);
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
 
     @Test
     @DisplayName("부모 타입으로 조회시, 자식이 둘 이상 있으면, 중복 오류가 발생")
@@ -52,7 +52,7 @@ public class ApplicationContextExtendsFindTest {
             System.out.println("key = "+key + "value = " + beansOfType.get(key));
         }
     }
-    
+
     @Test
     @DisplayName("부모 타입으로 모두 조회하기 - Object")
     void findAllBeanByObjectType() {
