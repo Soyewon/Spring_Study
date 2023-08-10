@@ -3,10 +3,7 @@ package jpabook.jpashop.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +17,9 @@ public class Member {
 
     private String name; // 회원명
 
+    @Embedded // 내장타입
     private Address address;
 
+    @OneToMany(mappedBy = "member") // order 테이블에 있는 member 필드에 의해 맵핑되었다
     private List<Order> orders = new ArrayList<>();
 }
