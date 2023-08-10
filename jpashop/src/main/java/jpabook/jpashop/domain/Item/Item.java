@@ -1,9 +1,13 @@
 package jpabook.jpashop.domain.Item;
 
+import jpabook.jpashop.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 한 테이블에 다 때려박기
@@ -17,8 +21,9 @@ public abstract class Item {
     private Long id;
 
     private String name;
-
     private int price;
-
     private int stockQuantity;
+
+    @ManyToMany(mappedBy = "items") // category class에 있는 List<Item> items
+    private List<Category> categories = new ArrayList<>();
 }
