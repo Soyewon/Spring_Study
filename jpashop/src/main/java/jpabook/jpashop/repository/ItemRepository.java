@@ -18,7 +18,7 @@ public class ItemRepository {
         if(item.getId() == null) { // item은 jpa에 저장하기 전까지 id가 없음 => 넣을 때 신규로 등록됨
             em.persist(item);
         } else {
-            em.merge(item); // update 비슷한 것
+            Item merge = em.merge(item); // update 비슷한 것
         }
     }
 

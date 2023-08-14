@@ -1,5 +1,6 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.domain.Item.Book;
 import jpabook.jpashop.domain.Item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,17 @@ public class ItemService {
     @Transactional // readOnly면 저장이 안되기 때문에
     public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    // Dirty Checking
+    @Transactional // flush 날림 -> 영속성 컨텍스트 중 변경된 애 찾아서 업데이트쿼리를 디비에 날려줌
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+        Item findItem = itemRepository.findOne(itemId); // id를 기반으로 실제 db에 있는 영속 상태 객체 찾아오기
+        // 값 세팅
+        findItem.setPrice(price);
+        findItem.setName(name);
+        findItem.setStockQuantity(stockQuantity);
+
     }
 
     public List<Item> findItems() {

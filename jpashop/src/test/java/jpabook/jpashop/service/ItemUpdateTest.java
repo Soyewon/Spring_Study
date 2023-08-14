@@ -23,7 +23,7 @@ public class ItemUpdateTest {
     }
 
     // TX
-    
+
 
     // 변경감지 == dirty checking
 }
